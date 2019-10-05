@@ -1,6 +1,8 @@
 const User = require('../models/User')
 module.exports = {
-    index(){
+    async index(req, res){
+        users = await User.find()
+        return res.json(users)
 
     },
     show(){
