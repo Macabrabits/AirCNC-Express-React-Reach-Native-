@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const routes = require('./routes')
 const cors = require('cors')
+const path = require('path')
 
 const app = express()
 //mongoose.connect('mongodb+srv://aircnc:DMAtGFR8Z0CM1GLF@aircnc-5iwgd.mongodb.net/admin?retryWrites=true&w=majority', {
@@ -12,6 +13,7 @@ mongoose.connect('mongodb://aircnc:DMAtGFR8Z0CM1GLF@aircnc-shard-00-00-5iwgd.mon
 
 app.use(cors('http://localhost:3000'))
 app.use(express.json()) //Setup express for json API
+app.use('/files', express.static(path.resolve(__dirname, '..', 'uploads' )))
 app.use(routes)
 
 
