@@ -1,5 +1,11 @@
 const mongoose = require('mongoose')
 
+const config = {
+    toJSON: {
+        virtuals: true,
+    }
+}
+
 const SpotSchema = new mongoose.Schema({
     thumbnail: String,
     company: String,
@@ -9,11 +15,7 @@ const SpotSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }
-},{
-    toJSON: {
-        virtuals: true,
-    }
-})
+}, config)
 
 SpotSchema.virtual('thumbnail_url').get(function(){
     return `http://localhost:3333/files/${this.thumbnail}`
